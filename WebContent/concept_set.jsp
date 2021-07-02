@@ -8,33 +8,10 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <jsp:include page="head.jsp" flush="true">
-	<jsp:param name="title" value="CTSAsearch" />
+	<jsp:param name="title" value="N3C Concept Search" />
 </jsp:include>
 <style type="text/css" media="all">
 @import "resources/layout.css";
-
-ol {
-	padding-inline-start: 10px;
-	maring-left: 0;
-	padding-left: 15px;
-}
-
-ul {
-	padding-inline-start: 10px;
-	maring-left: 0;
-	padding-left: 25px;
-}
-
-input {
-	padding-left: 7px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.desc-list {width =45%;display =inline-block;
-	
-}
 </style>
 
 <body class="home page-template-default page page-id-6 CD2H">
@@ -45,7 +22,16 @@ input {
 		<br /> <br />
 		<div class="col">
 			<sql:query var="concept" dataSource="jdbc/N3CConceptSets">
-			select codeset_id,concept_set_name,jsonb_pretty(atlas_json::jsonb) as json from enclave_concept.code_sets where codeset_id = ?::int
+			select
+				codeset_id,
+				concept_set_name,
+				version,
+				status,
+				jsonb_pretty(regexp_replace(atlas_json,'\n',' ','g')::jsonb) as json,
+				provisional_approval_date,
+				release_name
+			from enclave_concept.code_sets left outer join enclave_concept.provisional_approvals on (codeset_id=concept_set_id)
+			where codeset_id = ?::int
 			<sql:param>${param.id}</sql:param>
 			</sql:query>
 			<c:forEach items="${concept.rows}" var="row" varStatus="rowCounter">
@@ -58,6 +44,22 @@ input {
 					<tr>
 						<th>Concept Set Name</th>
 						<td>${row.concept_set_name}</td>
+					</tr>
+					<tr>
+						<th>Version</th>
+						<td>${row.version}</td>
+					</tr>
+					<tr>
+						<th>Status</th>
+						<td>${row.status}</td>
+					</tr>
+					<tr>
+						<th>Provisional Approval Date</th>
+						<td>${row.provisional_approval_date}</td>
+					</tr>
+					<tr>
+						<th>Release Name</th>
+						<td>${row.release_name}</td>
 					</tr>
 					<tr>
 						<th>JSON Definition</th>

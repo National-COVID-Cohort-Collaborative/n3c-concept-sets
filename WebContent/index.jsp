@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <jsp:include page="head.jsp" flush="true">
-	<jsp:param name="title" value="CTSAsearch" />
+	<jsp:param name="title" value="N3C Concept Search" />
 </jsp:include>
 <style type="text/css" media="all">
 @import "resources/layout.css";
@@ -47,7 +47,7 @@ input {
 	<div class="container-fluid" style="padding-left:5%; padding-right:5%;">
 		<br/> <br/> 
 		<div class="col">
-			<h2><i style="color:#7bbac6;"class="fas fa-search"></i> Faceted Search</h2>
+			<h2><i style="color:#7bbac6;"class="fas fa-search"></i> Concept Set Search</h2>
 			<div id=form>
 				<form method='POST' action='index.jsp'>
 					<fieldset>
