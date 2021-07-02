@@ -76,7 +76,7 @@ input {
 					
 					<c:set var="drillDownList"><lucene:drillDownProcessor categoryPaths="${param.drillDown}" drillUpCategory="${param.drillUp}" drillOutCategory="${param.drillOut}" /></c:set>
 
-					<lucene:search lucenePath="/usr/local/CD2H/lucene/concept_sets" label="content" queryParserName="boolean" queryString="${param.query}" useConjunctionByDefault="true">
+					<lucene:search lucenePath="/usr/local/CD2H/lucene/concept_sets" label="content" queryParserName="biomedical" queryString="${param.query}" useConjunctionByDefault="true">
 						<div style="with: 100%">
 							<div id ="facet-box" style="width: 40%; padding: 0px 80px 0px 0px; float: left">
 								<h5>Facets:</h5>
@@ -262,7 +262,7 @@ input {
 	  									</tr>
 										<lucene:searchIterator>
 											<tr>
-												<td><a href="<lucene:hit label="id" />"><lucene:hit label="label" /></a></td>
+												<td><a href="concept_set.jsp?id=<lucene:hit label="id" />"><lucene:hit label="label" /></a></td>
 											<tr>
 										</lucene:searchIterator>
 									</table>
@@ -278,7 +278,7 @@ input {
 			</c:when>
 			<c:otherwise>
 				<div class='desc-text' style="width:80%;">
-				<p>This proof-of-concept explores multi-faceted search across multiple federated sources, both internal to CD2H and the CTSA Consortium and more broadly across the entire informatics community.
+				<p>This proof-of-concept explores multi-faceted search across N3C concept sets.
 				<b>Comments and questions are welcome!</b> We are particularly interested in feedback regarding the nature and organization of the facets used to filter search results. The facet taxonomy is readily
 				restructured as we index data.</p>
 				</div>
