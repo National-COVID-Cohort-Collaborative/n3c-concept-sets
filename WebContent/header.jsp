@@ -29,16 +29,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <jsp:include page="local_nav.jsp"/>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Coordinating Centers
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="https://ctsa.ncats.nih.gov/cd2h/">CD2H</a>
-          <a class="dropdown-item" href="https://clic-ctsa.org/">CLIC</a>
-        </div>
-      </li>
+			<li class="nav-item">
+				<a class="nav-link" href="<util:applicationRoot/>/">Home</a>
+			</li>
     </ul>
   </div>
 </nav>

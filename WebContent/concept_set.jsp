@@ -14,25 +14,24 @@
 @import "resources/layout.css";
 </style>
 
-<body class="home page-template-default page page-id-6 CD2H">
+<body>
 	<jsp:include page="header.jsp" flush="true" />
 
-	<div class="container-fluid"
-		style="padding-left: 5%; padding-right: 5%;">
+	<div class="container-fluid" style="padding-left: 5%; padding-right: 5%;">
 		<br /> <br />
-		<div class="col">
+		<div class="col-sm-9" style="float: left">
 			<sql:query var="concept" dataSource="jdbc/N3CConceptSets">
-			select
-				codeset_id,
-				concept_set_name,
-				version,
-				status,
-				jsonb_pretty(regexp_replace(atlas_json,'\n',' ','g')::jsonb) as json,
-				provisional_approval_date,
-				release_name
-			from enclave_concept.code_sets left outer join enclave_concept.provisional_approvals on (codeset_id=concept_set_id)
-			where codeset_id = ?::int
-			<sql:param>${param.id}</sql:param>
+				select
+					codeset_id,
+					concept_set_name,
+					version,
+					status,
+					jsonb_pretty(regexp_replace(atlas_json,'\n',' ','g')::jsonb) as json,
+					provisional_approval_date,
+					release_name
+				from enclave_concept.code_sets left outer join enclave_concept.provisional_approvals on (codeset_id=concept_set_id)
+				where codeset_id = ?::int
+				<sql:param>${param.id}</sql:param>
 			</sql:query>
 			<c:forEach items="${concept.rows}" var="row" varStatus="rowCounter">
 				<h2>Concept Set: ${row.concept_set_name}</h2>
@@ -67,12 +66,41 @@
 					</tr>
 				</table>
 			</c:forEach>
-			<div style="width: 100%; float: left">
-				<jsp:include page="footer.jsp" flush="true" />
-			</div>
+		</div>
+		<div class="col-sm-3" style="float: left">
+			<h3>Similar Concept Sets</h3>
+			<sql:query var="concept" dataSource="jdbc/N3CConceptSets">
+				select code_sets.codeset_id, concept_set_name,count
+				from
+					enclave_concept.code_sets
+				natural join
+					(select foo.codeset_id,count(*)
+					from enclave_concept.code_set_concept as foo, enclave_concept.code_set_concept as bar
+					where bar.codeset_id = ?::int
+					  and foo.concept_id = bar.concept_id
+					  and foo.codeset_id <> bar.codeset_id
+					group by 1) as counter
+				-- where is_most_recent_version and status is not null
+				order by 3 desc;
+				<sql:param>${param.id}</sql:param>
+			</sql:query>
+			<table class="table table-striped">
+				<tr>
+					<th>Concept Set Name</th>
+					<th>Match Count</th>
+				</tr>
+				<c:forEach items="${concept.rows}" var="row" varStatus="rowCounter">
+					<tr>
+						<td><a href="concept_set.jsp?id=${row.codeset_id}">${row.concept_set_name}</a></td>
+						<td>${row.count}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<div style="width: 100%; float: left">
+			<jsp:include page="footer.jsp" flush="true" />
 		</div>
 	</div>
-
 </body>
 
 </html>
