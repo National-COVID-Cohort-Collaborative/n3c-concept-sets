@@ -318,6 +318,7 @@ table a {
    -moz-transform: scale(0.9);
    -o-transform: scale(0.9);
    transform: scale(0.9);
+   transform-origin:left top;
    -webkit-transform-origin:left top;
    -moz-transform-origin:left top;
    margin-left:5%;
@@ -328,6 +329,7 @@ table a {
    -moz-transform: scale(0.8);
    -o-transform: scale(0.8);
    transform: scale(0.8);
+   transform-origin:left top;
    -webkit-transform-origin:left top;
    -moz-transform-origin:left top;
    margin-left:10%;

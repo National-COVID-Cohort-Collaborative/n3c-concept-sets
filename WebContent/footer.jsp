@@ -48,4 +48,3 @@ This work is supported by the National Institutes of Health's National Center fo
 			<i class="fab fa-github-square fa-2x pl-1" style="background: -webkit-linear-gradient(#eee, #333); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
   		</a>
 	</div>
-</div>
