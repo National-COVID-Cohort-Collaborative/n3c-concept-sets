@@ -81,7 +81,7 @@
 					  and foo.codeset_id <> bar.codeset_id
 					group by 1) as counter
 				-- where is_most_recent_version and status is not null
-				order by 3 desc;
+				order by 3 desc, 2;
 				<sql:param>${param.id}</sql:param>
 			</sql:query>
 			<table class="table table-striped">
