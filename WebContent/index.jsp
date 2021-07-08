@@ -70,9 +70,9 @@ input {
 				<h3><c:out value="${displayString}" /></h3>
                 <div style="width: 100%; float: left">
 				<lucene:taxonomy taxonomyPath="/usr/local/CD2H/lucene/concept_sets_tax">
-					<lucene:countFacetRequest categoryPath="Status" depth="3" />
-					<lucene:countFacetRequest categoryPath="Domain" depth="3" />
-					<lucene:countFacetRequest categoryPath="Class" depth="2" />
+					<lucene:countFacetRequest categoryPath="N3C Status" depth="3" />
+					<lucene:countFacetRequest categoryPath="OMOP Domain" depth="3" />
+					<lucene:countFacetRequest categoryPath="OMOP Class" depth="2" />
 					
 					<c:set var="drillDownList"><lucene:drillDownProcessor categoryPaths="${param.drillDown}" drillUpCategory="${param.drillUp}" drillOutCategory="${param.drillOut}" /></c:set>
 
