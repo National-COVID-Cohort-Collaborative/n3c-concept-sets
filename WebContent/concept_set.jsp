@@ -63,7 +63,6 @@ table.dataTable thead .sorting_asc {
 }
 </style>
 <body>
-	<jsp:include page="header.jsp" flush="true" />
 
 <sql:query var="label" dataSource="jdbc/N3CConceptSets">
 	select alias from enclave_concept.concept_set where codeset_id = ?::int
