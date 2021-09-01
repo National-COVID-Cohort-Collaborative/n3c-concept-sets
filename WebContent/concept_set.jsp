@@ -63,6 +63,7 @@ table.dataTable thead .sorting_asc {
 }
 </style>
 <body>
+	<jsp:include page="header2.jsp" flush="true" />
 
 <sql:query var="label" dataSource="jdbc/N3CConceptSets">
 	select alias from enclave_concept.concept_set where codeset_id = ?::int
@@ -74,6 +75,8 @@ table.dataTable thead .sorting_asc {
 
 	<div class="container-fluid" style="padding-left: 5%; padding-right: 5%;">
 	<h3>N3C Concept Set Browser</h3>
+	<h4>[<a href="pdf/${param.id}.pdf">Download PDF</a>]</h4>
+	<br/>
 		<ul class="nav nav-tabs" style="font-size: 16px;">
 			<li class="active"><a data-toggle="tab" href="#overview">Overview</a></li>
 			<li><a data-toggle="tab" href="#logical">Logic Hierarchy</a></li>
