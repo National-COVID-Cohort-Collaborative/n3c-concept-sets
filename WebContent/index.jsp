@@ -73,6 +73,7 @@ input {
 					<lucene:countFacetRequest categoryPath="N3C Status" depth="3" />
 					<lucene:countFacetRequest categoryPath="OMOP Domain" depth="3" />
 					<lucene:countFacetRequest categoryPath="OMOP Class" depth="2" />
+					<lucene:countFacetRequest categoryPath="Author" depth="2" />
 					
 					<c:set var="drillDownList"><lucene:drillDownProcessor categoryPaths="${param.drillDown}" drillUpCategory="${param.drillUp}" drillOutCategory="${param.drillOut}" /></c:set>
 
