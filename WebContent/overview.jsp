@@ -16,11 +16,11 @@
 					update_message,
 					provisional_approval_date,
 					release_name,
-					created_by,
+					coalesce(name, first_name||' '||last_name) as author,
 					limitations,
 					issues,
 					provenance
-				from enclave_concept.concept_set
+				from enclave_concept.concept_set_display
 				where codeset_id = ?::int
 				<sql:param>${param.id}</sql:param>
 			</sql:query>
@@ -60,7 +60,7 @@
 					</tr>
 					<tr>
 						<th>Author</th>
-						<td>${row.created_by}</td>
+						<td>${row.author}</td>
 					</tr>
 					<tr>
 						<th>Project Names</th>
