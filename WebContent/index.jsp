@@ -49,7 +49,7 @@ input {
 		<div class="col">
 			<h2><i style="color:#7bbac6;"class="fas fa-search"></i> Concept Set Search</h2>
 			<div id=form>
-				<form method='POST' action='index.jsp'>
+				<form method='POST' action='<util:applicationRoot/>/index.jsp'>
 					<fieldset>
 						<input class='search-box' name="query" value="${param.query}" size=50> 
 						<input type=submit name=submitButton value=Go!>
